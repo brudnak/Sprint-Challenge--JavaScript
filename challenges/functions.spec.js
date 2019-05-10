@@ -8,9 +8,7 @@ describe('functions.js', () => {
             expect(actualOutput).toBe(expectedOutput)
         })
     })
-})
 
-describe('functions.js', () => {
     describe('consume multiply callback function', () => {
         it('can multiply two numbers', () => {
             const expectedOutput = 12
@@ -18,9 +16,7 @@ describe('functions.js', () => {
             expect(actualOutput).toBe(expectedOutput)
         })
     })
-})
 
-describe('functions.js', () => {
     describe('consume greeting callback function', () => {
         it('takes in a first and last name, then outputs a greeting', () => {
             const expectedOutput = 'Hello Andrew Brudnak, nice to meet you!'

@@ -26,8 +26,8 @@ class CuboidMaker {
 
 // Test your volume and surfaceArea methods by uncommenting the logs below:
 
- // 100
- console.log('The number: 100 should print below')
+// 100
+console.log('The number: 100 should print below')
 console.log(cuboid.volume())
 
 // 130
