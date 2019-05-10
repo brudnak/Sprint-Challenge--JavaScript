@@ -1,3 +1,4 @@
+'use strict'
 // ==== Objects ====
 
 /* 
@@ -7,28 +8,50 @@
 */
 
 // tyrannosaurus, carnivorous, 7000kg, 12m, Late Cretaceous
+const tyrannosaurus = {
+  name: 'Tyrannosaurus',
+  diet: 'carnivorous',
+  weight: '7000kg',
+  length: '12m',
+  period: 'Late Cretaceous',
+  roar: () => 'RAWERSRARARWERSARARARRRR!'
+}
 
 // stegosaurus, herbivorous, 2000kg, 9m, Late Jurassic
+const stegosaurus = {
+  name: 'Stegosaurus',
+  diet: 'herbivorous',
+  weight: '2000kg',
+  length: '9m',
+  period: 'Late Jurassic'
+}
 
 // velociraptor, carnivorous, 15kg, 1.8m, Late Cretaceous
+const velociraptor = {
+  name: 'Velociraptor',
+  diet: 'carnivorous',
+  weight: '15kg',
+  length: '1.8m',
+  period: 'Late Cretaceous'
+}
 
 // Using your dinosaur objects, log answers to these questions:
 
 // How much did tyrannosaurus weigh?
-console.log();
+console.log(`The ${tyrannosaurus.name} weighed: ${tyrannosaurus.weight}`)
 
 // What was the diet of a velociraptor?
-console.log();
+console.log(`The ${velociraptor.name} had a ${velociraptor.diet} diet`)
 
 // How long was a stegosaurus?
-console.log();
+console.log(`The ${stegosaurus.name} was ${stegosaurus.length} long`)
 
 // What time period did tyrannosaurus live in?
-console.log();
+console.log(`The ${tyrannosaurus.name} lived during the ${tyrannosaurus.period} period`)
 
 
 // Create a new roar method for the tyrannosaurus.  When called, return "RAWERSRARARWERSARARARRRR!" Log the result.
-console.log();
+console.log(`The ${tyrannosaurus.name} most likely made the sound: ${tyrannosaurus.roar()}`)
 
 
 // ==== Arrays ====
@@ -50,6 +73,11 @@ const graduates = [{"id":1,"first_name":"Cynde","university":"Missouri Southern 
 
 Once you have the new array created, sort the universities alphabetically and log the result. */
 const universities = [];
+for (let i = 0; i < graduates.length; i++) {
+  universities.push(graduates[i].university)
+}
+universities.sort()
+console.log('******************** UNIVERSITIES BELOW ********************')
 console.log(universities)
 
 /* Request 2: Create a new array called contactInfo that contains both first name and email of each student. 
@@ -58,13 +86,26 @@ The resulting contact information should have a space between the first name and
 Name email@example.com
 
 Log the result of your new array. */
-const contactInfo = [];
-console.log(contactInfo);
+const contactInfo = []
+for (let i = 0; i < graduates.length; i++) {
+  const e = graduates[i]
+  contactInfo.push(`${e.first_name} ${e.email}`)
+}
+console.log('******************** CONTACT INFO BELOW ********************')
+console.table(contactInfo)
 
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all. Log the result. */
-const uni = [];
-console.log(uni);
+const uni = []
+const isUni = e => e.university.includes('Uni')
+for (let i = 0; i < graduates.length; i++) {
+  const e = graduates[i]
+  if (isUni(e)) {
+    uni.push(e.university)
+  }
+}
+console.log('******************** CONTAINS "UNI" ********************')
+console.log(uni)
 
 
 // ==== ADVANCED Array Methods ====
@@ -72,7 +113,7 @@ console.log(uni);
 // Given this zoo data from around the United States, follow the instructions below.  Use the specific array methods in the requests below to solve the problems.
 
 
-zooAnimals = [{"animal_name":"Jackal, asiatic","population":5,"scientific_name":"Canis aureus","state":"Kentucky"},
+const zooAnimals = [{"animal_name":"Jackal, asiatic","population":5,"scientific_name":"Canis aureus","state":"Kentucky"},
 {"animal_name":"Screamer, southern","population":1,"scientific_name":"Chauna torquata","state":"Alabama"},
 {"animal_name":"White spoonbill","population":8,"scientific_name":"Platalea leucordia","state":"Georgia"},
 {"animal_name":"White-cheeked pintail","population":1,"scientific_name":"Anas bahamensis","state":"Oregon"},
@@ -88,8 +129,11 @@ zooAnimals = [{"animal_name":"Jackal, asiatic","population":5,"scientific_name":
 The zoo wants to display both the scientific name and the animal name in front of the habitats.  Return an array with only the animal and scientific names in it.  The individual values in the array should look like this "Name: Jackal, asiatic, Scientific: Canis aureus."
 
 */
-const animalNames = [];
-console.log(animalNames);
+
+const animalNames = []
+zooAnimals.forEach(e => animalNames.push(`Name: ${e.animal_name}, Scientific: ${e.scientific_name}`))
+console.log('******************** ANIMAL NAMES ********************')
+console.log(animalNames)
 
 /* Request 2: .map()    
 
@@ -97,25 +141,31 @@ The zoos need a list of all their animal's names (names only, not scientific) co
 
 */
 
-const lowerCase = [];
-console.log(lowerCase); 
+const lowerCase = zooAnimals.map(e => e.animal_name.toLowerCase())
+console.log('******************** ANIMAL NAMES LOWER CASE ********************')
+console.log(lowerCase)
 
 /* Request 3: .filter() 
 
 The zoos are concenred about animals with a lower population count. Find out which animals have a population less than 5.
 
 */
-const largerPopulation = [];
-console.log(largerPopulation);
+
+// Provided array of largerPopulation does not make sense with this question
+const endangered = e => e.population < 5
+const lowerPopuation = zooAnimals.filter(endangered)
+console.log('******************** LOWER POPULATION ********************')
+console.table(lowerPopuation)
 
 /* Request 4: .reduce() 
 
 The zoos need to know their total animal population across the United States.  Find the total population from all the zoos using the .reduce() method.
 
 */
-const populationTotal = 0;
-console.log(populationTotal);
 
+const populationTotal = zooAnimals.reduce((sum, e) => sum + e.population, 0)
+console.log('******************** POPULATION TOTAL ********************')
+console.log(`The Zoos total population across the United States: ${populationTotal}`)
 
 /* 
 
@@ -123,3 +173,4 @@ Stretch: If you haven't already, convert your array method callbacks into arrow 
 
 */
 
+// STETCH ALREADY COMPLETE
