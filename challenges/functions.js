@@ -69,3 +69,11 @@ function myFunction() {
   nestedFunction()
 }
 myFunction()
+
+// Exports
+module.exports = {
+  consume,
+  add,
+  multiply,
+  greeting
+}
